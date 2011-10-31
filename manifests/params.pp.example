@@ -1,0 +1,20 @@
+class oxford::params {
+  $od_cron_run   = '10' 
+  $od_oxford_ver = '0.8'
+  $od_ldap_host  = 'pdal.frymanet.test'
+  $od_ldap_port  = '389'
+  $od_ldap_base  = 'dc=frymanet,dc=test'
+  $od_ldap_user  = "cn=oxford,ou=Special,${od_ldap_base}"
+  $od_ldap_pass  = 'I should never give out passwords!'
+
+  $od_conf_file = '/etc/oxford.conf'
+  $od_oxford_gem = "http://db.tt/5lyzSgxF"
+ 
+  # Operating System Specific info
+  case $::operatingsystem {
+    fedora,redhat,centos: {
+      $od_gem_path    = '/usr/bin'
+      $od_oxford_path = "${od_gem_path}/oxford"
+    }
+  }
+}

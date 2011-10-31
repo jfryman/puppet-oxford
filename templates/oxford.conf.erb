@@ -1,0 +1,9 @@
+<% if conn_type == 'ldap' -%>
+ldap:
+  host: <%= ldap_host %>
+  port: <%= ldap_port.to_i %>
+  method: <%= ldap_method.to_sym %>
+  base: <%= ldap_base %>
+  user: <%= ldap_user %>
+  pass: <%= ldap_pass %>
+<% end -%>
