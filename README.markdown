@@ -7,6 +7,7 @@ This module manages Oxford from within Puppet.
 # Quick Start
 
 Install and bootstrap Oxford Fact Exporter
+
 * Download Manifest
 * Customize params.pp.example (if necessary)
 * Profit
