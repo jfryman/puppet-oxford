@@ -27,7 +27,3 @@ Puppet Labs Standard Library
     ldap_pass   => 'I shouldn never give out passwords!',
    }
 </pre>
-
-# TODO
-* Publish Oxford as Gem
-* Modify package class to pull from gem
