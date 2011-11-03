@@ -1,14 +1,22 @@
 class oxford(
+  $version     = '',
   $conn_type   = 'ldap',
   $ldap_host   = '',
   $ldap_port   = '',
   $ldap_method = 'plain',
   $ldap_base   = '',
   $ldap_user   = '',
-  $ldap_pass   = ''
+  $ldap_pass   = '',
+  $use_pm_ruby = ''
 ) {
   include stdlib
   include oxford::params
+
+  if $version == '' { $REAL_version = $oxford::params::od_oxford_ver }
+  else { $REAL_version = $version }
+
+  if $use_pm_ruby == '' { $REAL_use_pm_ruby = $oxford::params::od_use_pm_ruby }
+  else { $REAL_use_pm_ruby = $use_pm_ruby }
 
   if $ldap_host == '' { $REAL_ldap_host = $oxford::params::od_ldap_host }
   else { $REAL_ldap_host = $ldap_host }
@@ -36,8 +44,11 @@ class oxford(
   }
 
   anchor { 'oxford::begin': }
-  -> class { 'oxford::package': }
-  -> class { 'oxford::config': 
+  -> class { 'oxford::package':
+    use_pm_ruby => $REAL_use_pm_ruby,
+    version     => $REAL_version, 
+  }
+  -> class { 'oxford::config':
     conn_type   => $REAL_conn_type,
     ldap_host   => $REAL_ldap_host,
     ldap_port   => $REAL_ldap_port,
